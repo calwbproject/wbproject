@@ -37,6 +37,18 @@
     class="my-3"
   >
     {% csrf_token %}
+    <!-- error start-->
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for field in form %} {% if field.errors %}
+      <div>
+        <strong>{{ field.label}}</strong>
+        {{field.errors}}
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+    <!-- error end-->
     <div class="mb-3">
       <label for="content" class="form-label">답변내용</label>
       <textarea

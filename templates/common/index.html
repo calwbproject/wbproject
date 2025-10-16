@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% load static %} {% block content%}
+
+<script src="{% static 'js/login.js' %}" defer></script>
+
+
+<form method="post" action={% url 'common:token_obtain_pair'%} id="login_form">
+  {% csrf_token %} {{form.non_field_errors}}
+  <div>
+    <label for="username">ID</label>
+    <input type="text" name="username">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password">
+  </div>
+  <button type="button" id="login_button">Login</button>
+</form>
+<h1 id = "successH1"style="display:none">login success!</h1>
+
+
+<button id="logout_button" type="button" class="btn btn-link" style="display:none">Logout</button>
+
+{% endblock %}
