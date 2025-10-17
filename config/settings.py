@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
+from django.conf.global_settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL, STATICFILES_DIRS
 import rest_framework
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'pybo.apps.PyboConfig',
     'common.apps.CommonConfig',
     'rest_framework',
-    'rest_framework_simplejwt',
+    'drf_spectacular'
+    # 'rest_framework_simplejwt',
     
 ]
 
@@ -134,7 +135,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # )
+    'DEFAULT_SCHEMA_CLASS':'drf_spectacular.openapi.AutoSchema',
 }
+
+
+LOGIN_URL = 'common:login'
+LOGIN_REDIRECT_URL='common:logoutTest'
+LOGOUT_REDIRECT_URL='common:login'

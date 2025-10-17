@@ -8,9 +8,10 @@ from common import views
 app_name = 'common'
 
 urlpatterns = [
-    # path('login/', auth_views.LoginView.as_view(template_name = 'common/login.html'),name = 'login'),
-    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name = 'common/login.html'),name = 'login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('logoutTest/',views.logoutTest, name='logoutTest'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair' ),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('register', views.UserView.as_view(), name='register')
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair' ),
+    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
