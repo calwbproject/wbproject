@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-#u@qe+7nj@gu!^yb=b%-&s*j@v#boz8^)ue&03hk@a!sb(l6nz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.36.41']
 
 
 # Application definition
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'pybo.apps.PyboConfig',
     'common.apps.CommonConfig',
     'rest_framework',
-    'drf_spectacular'
+    'drf_spectacular',
+    'whiteboard.apps.WhiteboardConfig',
     # 'rest_framework_simplejwt',
     
 ]
