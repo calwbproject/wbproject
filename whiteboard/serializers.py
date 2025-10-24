@@ -27,4 +27,11 @@ class EngineerSerializer(serializers.ModelSerializer):
     
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'company', 'sales_name', 'engineer_type')
+        fields = ('id', 'engineer_name', 'company', 'sales_name', 'engineer_type', 'engineer_status')
+        
+        
+class EngineerSimpleSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model= Engineer
+        fields = ('id', 'engineer_name', 'sales_name', 'engineer_type', 'engineer_status')
