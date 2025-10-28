@@ -15,6 +15,10 @@ class CompanySerializer(serializers.ModelSerializer):
         return EngineerSerializer(engineers, many=True).data
     
     
+    
+
+    
+    
 class CompanySimpleSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -23,15 +27,15 @@ class CompanySimpleSerializer(serializers.ModelSerializer):
     
 class EngineerSerializer(serializers.ModelSerializer):
     
-    company = CompanySimpleSerializer(source='company_name', read_only=True)
+    company = CompanySimpleSerializer(source='company', read_only=True)
     
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'company', 'sales_name', 'engineer_type', 'engineer_status')
+        fields = ('id', 'engineer_name', 'company', 'sales_id', 'engineer_type', 'engineer_status')
         
         
 class EngineerSimpleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'sales_name', 'engineer_type', 'engineer_status')
+        fields = ('id', 'engineer_name', 'sales_id', 'engineer_type', 'engineer_status', 'company_name')
