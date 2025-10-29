@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from whiteboard.models import Company, Engineer
@@ -27,15 +28,19 @@ class CompanySimpleSerializer(serializers.ModelSerializer):
     
 class EngineerSerializer(serializers.ModelSerializer):
     
-    company = CompanySimpleSerializer(source='company', read_only=True)
+    companies = CompanySimpleSerializer(source='company', read_only=True)
+    sales_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='sales')
     
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'company', 'sales_id', 'engineer_type', 'engineer_status')
+        fields = ('id', 'engineer_name', 'companies', 'sales_id', 'engineer_type', 'engineer_status')
         
         
 class EngineerSimpleSerializer(serializers.ModelSerializer):
     
+    company_id = serializers.PrimaryKeyRelatedField(queryset=Company.objects.all(), source='company')
+    sales_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='sales')
+    
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'sales_id', 'engineer_type', 'engineer_status', 'company_name')
+        fields = ('id', 'engineer_name', 'sales_id', 'engineer_type', 'engineer_status', 'company_id')

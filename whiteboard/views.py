@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from common.serializers import UserSerializer
 from whiteboard.models import Company, Engineer
-from whiteboard.serializers import CompanySerializer, EngineerSerializer
+from whiteboard.serializers import CompanySerializer, CompanySimpleSerializer, EngineerSerializer, EngineerSimpleSerializer
 
 
 #Retrive overview
@@ -97,7 +97,7 @@ class Engineer_info(APIView):
         engineer = get_object_or_404(Engineer, pk=pk)
         
         #시리얼라이저 생성
-        serializer = EngineerSerializer(engineer, data=request.data, partial=True)
+        serializer = EngineerSimpleSerializer(engineer, data=request.data, partial=True)
         
         #정상적인경우
         if serializer.is_valid():
@@ -127,7 +127,7 @@ class Company_info(APIView):
             
             #데이터를 시리얼라이저
             # TODO : 예외 처리 필요
-            serializer = CompanySerializer(companies, many=True)
+            serializer = CompanySimpleSerializer(companies, many=True)
             
         else:
             
