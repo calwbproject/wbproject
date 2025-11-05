@@ -9,9 +9,9 @@ class Company(models.Model):
 class Engineer(models.Model):
     engineer_name = models.CharField(max_length=50)
     engineer_no = models.CharField(max_length=50)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
     sales = models.ForeignKey(User, on_delete=models.CASCADE)
     engineer_type = models.CharField(max_length=50)
     engineer_status = models.CharField(max_length=20)
-    start_date = models.DateField()
-    end_data = models.DateField()
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)

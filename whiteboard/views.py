@@ -60,7 +60,7 @@ class Engineer_info(APIView):
     #insert a new ngineer
     def post(self, request):
         
-        serializer = EngineerSerializer(data=request.data)
+        serializer = EngineerSimpleSerializer(data=request.data)
         
         #if data is valid
         if serializer.is_valid():
@@ -70,7 +70,7 @@ class Engineer_info(APIView):
         
         # when data isn't valid
         else:
-            print(serializer.error)
+            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
     
     
@@ -145,7 +145,7 @@ class Company_info(APIView):
     # 회사 등록
     def post(self, request):
         
-        serializer = CompanySerializer(data=request.data)
+        serializer = CompanySimpleSerializer(data=request.data)
         
         #데이터가 정상적일 경우
         if serializer.is_valid():
