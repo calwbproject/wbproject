@@ -38,9 +38,9 @@ class EngineerSerializer(serializers.ModelSerializer):
         
 class EngineerSimpleSerializer(serializers.ModelSerializer):
     
-    company_id = serializers.PrimaryKeyRelatedField(queryset=Company.objects.all(), source='company')
-    sales_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='sales')
+    # company_id = serializers.PrimaryKeyRelatedField(queryset=Company.objects.all(), source='company')
+    # sales_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='sales')
     
     class Meta:
         model= Engineer
-        fields = ('id', 'engineer_name', 'sales_id', 'engineer_type', 'engineer_status', 'company_id')
+        fields = ('id', 'engineer_name', 'sales', 'engineer_type', 'engineer_status', 'company', 'start_date', 'end_date')
