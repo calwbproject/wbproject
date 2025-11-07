@@ -9,17 +9,22 @@ django.setup()
 
 
 
-# df = pd.read_csv('static/data/engineer_data.csv', encoding='cp932', parse_dates=['開始請求期間','終了請求期間'])
-# company_seriese = df['得意先名']
 
-# companies = company_seriese.drop_duplicates()
-
-
-# company_ojbs = [Company(company_name=name) for name in companies]
-# Company.objects.bulk_create(company_ojbs, ignore_conflicts=True)
 from django.contrib.auth.models import User
 from whiteboard.models import Company, Engineer
 import sqlite3
+
+#会社入力
+df = pd.read_csv('static/data/engineer_data.csv', encoding='cp932', parse_dates=['開始請求期間','終了請求期間'])
+company_seriese = df['得意先名']
+
+companies = company_seriese.drop_duplicates()
+
+
+company_ojbs = [Company(company_name=name) for name in companies]
+
+#TODO bulk_update転換必要
+Company.objects.bulk_create(company_ojbs, ignore_conflicts=True)
 
 # DB接続
 conn = sqlite3.connect('db.sqlite3')

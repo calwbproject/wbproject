@@ -204,3 +204,26 @@ class Sales_info(APIView):
         serializer = UserSerializer(users, many=True)
         
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    
+#通計関連
+class Statistics(APIView):
+    
+    def get(self, request):
+        # engineers = Engineer.objects.all()
+        
+        # 必要なデータ
+        #---------------------------------------------------------------------------
+        # 復社数, 日付,GE数, 月内入場（残）,月内退場（残）,待機数,└内未決定,└内GE　　
+
+        # 今月復社,シフト決定,└内延長,他拠点移動,退職者,シフト残り,今月入社/先付
+        # 来月入社/先付, 展開数, 前週比
+        #---------------------------------------------------------------------------
+        
+        
+        total_engineer = Engineer.objects.count()
+        
+        
+        # serializer = EngineerSimpleSerializer(engineers, many=True)
+        
+        return Response({'total_engineer':total_engineer}, status=status.HTTP_200_OK)

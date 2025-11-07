@@ -15,4 +15,5 @@ urlpatterns = [
     path('sales/', views.Sales_info.as_view(), name='sales_info'),
     path('overview/', views.Load_overview.as_view(), name='load_overview'),
     path('detail/<int:pk>', views.Load_details.as_view(), name='load_detail'),
+    path('statistic/', views.Statistics.as_view(), name='statistic')
 ]
