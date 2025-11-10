@@ -1,4 +1,5 @@
 import stat
+from dateutil.utils import today
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 from rest_framework import status
@@ -220,10 +221,14 @@ class Statistics(APIView):
         # 来月入社/先付, 展開数, 前週比
         #---------------------------------------------------------------------------
         
-        
+        # 復社数
         total_engineer = Engineer.objects.count()
+        
+        # 日付
+        today_date = today().date()
         
         
         # serializer = EngineerSimpleSerializer(engineers, many=True)
         
-        return Response({'total_engineer':total_engineer}, status=status.HTTP_200_OK)
+        return Response({'total_engineer':total_engineer,
+                         'today':today_date}, status=status.HTTP_200_OK)
