@@ -1,5 +1,5 @@
 import stat
-from dateutil.utils import today
+# from dateutil.utils import today
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 from rest_framework import status
@@ -225,10 +225,15 @@ class Statistics(APIView):
         total_engineer = Engineer.objects.count()
         
         # 日付
-        today_date = today().date()
+        # today_date = today().date()
         
+        #GE数
+        engineer_obj = Engineer.objects.filter(engineer_type = 'グローバル')
+        ge_count = engineer_obj.count()
         
         # serializer = EngineerSimpleSerializer(engineers, many=True)
         
         return Response({'total_engineer':total_engineer,
-                         'today':today_date}, status=status.HTTP_200_OK)
+                        #  'today':today_date,
+                         'ge_count':ge_count
+                         }, status=status.HTTP_200_OK)
