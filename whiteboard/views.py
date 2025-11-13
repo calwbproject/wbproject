@@ -221,7 +221,11 @@ class Statistics(APIView):
         # 来月入社/先付, 展開数, 前週比
         #---------------------------------------------------------------------------
         
+        
+        # 退職
         # 復社数
+        
+        # 現在人数
         total_engineer = Engineer.objects.count()
         
         # 日付
@@ -231,9 +235,23 @@ class Statistics(APIView):
         engineer_obj = Engineer.objects.filter(engineer_type = 'グローバル')
         ge_count = engineer_obj.count()
         
-        # serializer = EngineerSimpleSerializer(engineers, many=True)
+        # 待機数
+        standby_ge = Engineer.objects.filter(engineer_type = 'グローバル', company_id__isnull =True)
+        standby_ge_count = standby_ge.count()
+        
+        
+        # 終了予定
+        ending_soon = Engineer.objects.filter(engineer_status='今回終了')
+        ending_soon_count = ending_soon.count()
+        
+        # 展開数
+        release_engineers = Engineer.objects.filter(company_id__isnull=False).count()
+        
         
         return Response({'total_engineer':total_engineer,
                         #  'today':today_date,
-                         'ge_count':ge_count
+                         'ge_count':ge_count,
+                         'standby_ge_count': standby_ge_count,
+                         'ending_soon_count': ending_soon_count,
+                         'release_engineers':release_engineers
                          }, status=status.HTTP_200_OK)
