@@ -16,6 +16,7 @@ from whiteboard.serializers import CompanySerializer, CompanySimpleSerializer, E
 
 #Retrive overview
 class Load_overview(APIView):
+    authentication_classes = []    
     def get(self, request):
         #get user data
         user = User.objects.exclude(username='admin')
@@ -26,6 +27,7 @@ class Load_overview(APIView):
 
 #Retrive detail
 class Load_details(APIView):
+    authentication_classes = [] 
     def get(self, request, pk):
         
         #check pk existence
@@ -41,7 +43,7 @@ class Load_details(APIView):
 
 #Engineer-related class
 class Engineer_info(APIView):
-    
+    authentication_classes = []        
      #get engineer data
     def get(self, request, pk=None):
         
@@ -114,6 +116,7 @@ class Engineer_info(APIView):
 
 #회원을 다른 회사로 이동
 class Move_engineer(APIView):
+    authentication_classes = []    
     pass
 
 
@@ -121,6 +124,7 @@ class Move_engineer(APIView):
 
 #회사 CRUD
 class Company_info(APIView):
+    authentication_classes = []    
     # 회사 조회
     def get(self, request, pk=None):
         
@@ -201,7 +205,7 @@ class Company_info(APIView):
 
 #retrieval user data
 class Sales_info(APIView):
-    
+    authentication_classes = []        
     def get(self, request):
         users = User.objects.all()
         
@@ -212,7 +216,7 @@ class Sales_info(APIView):
     
 #通計関連
 class Statistics(APIView):
-    
+    authentication_classes = []        
     def get(self, request):
         # engineers = Engineer.objects.all()
         
